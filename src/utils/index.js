@@ -4,26 +4,25 @@ var request = require('superagent');
 
 class API {
     getTequileros() {
-        request.get('localhost:5000/api/tequileros')
+        request.get('http://localhost:5000/api/tequileros')
         .set('Accept', 'application/json')
         .end((err, response) => {
             if (err) return console.error(err);
 
-            console.log(response.body);
+            //console.log(response.body.tequileros);
             var payload = {};
             payload.tequileros = response.body.tequileros;
 
-            //TequilioActions.receiveTequileros(payload);
+            TequilioActions.receiveTequileros(payload);
         });
     }
 
     getTequileroTequilas(tequilero) {
-        request.get('localhost:5000/api/tequileros/' + tequilero)
+        request.get('http://localhost:5000/api/tequileros/' + tequilero)
         .set('Accept', 'application/json')
         .end((err, response) => {
             if (err) return console.error(err);
 
-            console.log(response.body);
             var payload = {};
             payload.tequilas = response.body.tequilas;
 

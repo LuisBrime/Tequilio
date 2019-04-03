@@ -69,6 +69,10 @@ class Home extends React.Component {
         this.state = {
             activeStep: 0,
         };
+
+        this.handleNext = this.handleNext.bind(this);
+        this.handleBack = this.handleBack.bind(this);
+        this.handleStepChange = this.handleStepChange.bind(this);
     }
 
     handleNext = () => {

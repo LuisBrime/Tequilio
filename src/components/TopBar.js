@@ -25,7 +25,7 @@ const list = [
   },
   {
     text: 'Buscar tequilas',
-    href: '/tequilas',
+    href: '/sku',
   },
   {
     text: 'Ver tequileras',

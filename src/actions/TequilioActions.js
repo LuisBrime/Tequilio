@@ -18,6 +18,13 @@ class TequilioActions {
         });
     }
 
+    changeTequilera(newTequilera) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.CHANGE_TEQUILERA,
+            payload: newTequilera
+        });
+    }
+
     getTequileroTequilas(tequilero) {
         Dispatcher.dispatch({
             actionType: ActionTypes.API_CALL
