@@ -5,7 +5,6 @@ import Constants from '../utils';
 let botella = {};
 let historial = [];
 
-
 let tequilerosNames = [];
 let tequilera = '';
 let tequilas = [];
@@ -76,7 +75,8 @@ class TequilioStore extends EventEmitter {
     }
 
     apiSkuReturn(result) {
-        botella = result;
+        botella = result.botella;
+        this.emit(Constants.ONE_BOTELLA_CHANGE);
     }
     
     getBotella() {
@@ -113,6 +113,14 @@ class TequilioStore extends EventEmitter {
 
     removeChangeListenerBotellas(callback) {
         this.removeListener(Constants.BOTELLAS_CHANGE, callback);
+    }
+
+    addChangeListenerSku(callback) {
+        this.on(Constants.ONE_BOTELLA_CHANGE, callback);
+    }
+
+    removeChangeListenerSku(callback) {
+        this.removeListener(Constants.ONE_BOTELLA_CHANGE, callback);
     }
 }
 

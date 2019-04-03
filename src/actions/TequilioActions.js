@@ -39,6 +39,21 @@ class TequilioActions {
             payload: payload
         });
     }
+
+    getSkuBotella(sku, user, pwd) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.API_CALL
+        });
+
+        API.getBotella(sku, user, pwd);
+    }
+
+    receiveSkuBotella(payload) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.API_SKU_RETURN,
+            payload: payload
+        });
+    }
 }
 
 export default new TequilioActions();

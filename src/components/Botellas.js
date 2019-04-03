@@ -10,22 +10,12 @@ import withRoot from '../withRoot';
 
 import TequilioStore from '../stores/TequilioStore';
 
-const drawerWidth = 240;
-
 const styles = theme => ({
     title: {
         textAlign: 'center',
         padding: theme.spacing.unit * 2,
     },
     toolbar: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-        marginTop: theme.spacing.unit * 8,
-        alignItems: 'center',
-        alignText: 'center',
-        marginLeft: `${drawerWidth}px`,
-    },
     heading: {
         fontSize: theme.typography.pxToRem(15),
         flexBasics: '33.33%',
