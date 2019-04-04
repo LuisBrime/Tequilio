@@ -17,7 +17,7 @@ class App extends Component {
             <Route path='/' exact component={Home} />
             <Route path='/sku' exact component={Search} />
             <Route path='/sku/:sku' exact component={SearchURL} />
-            <Route path='/tequileras' exact component={Tequileras} />
+            <Route path='/tequileras' component={Tequileras} />
             <Route path='/historial' exact component={Historial} />
           </div>
         </BrowserRouter>

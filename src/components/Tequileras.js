@@ -57,6 +57,7 @@ class Tequileras extends React.Component {
         TequilioActions.changeTequilera(event.target.value);
         TequilioActions.getTequileroTequilas(event.target.value);
         this.setState(newState);
+        window.location.hash = event.target.value;
     };
 
     _onChange() {
