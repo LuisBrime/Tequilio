@@ -3,6 +3,7 @@ import TopBar from './components/TopBar';
 import Home from './components/Home';
 import Tequileras from './components/Tequileras';
 import Search from './components/Search';
+import Historial from './components/MiHistorial';
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route path='/' exact component={Home} />
             <Route path='/sku' exact component={Search} />
             <Route path='/tequileras' exact component={Tequileras} />
+            <Route path='/historial' exact component={Historial} />
           </div>
         </BrowserRouter>
       </div>

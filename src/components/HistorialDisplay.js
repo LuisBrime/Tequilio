@@ -28,72 +28,60 @@ const styles = theme => ({
     },
 });
 
-class Botellas extends React.Component {
+class HistorialDisplay extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            tequilera: TequilioStore.getTequilera(),
-            tequilas: [],
+            historial: [],
             expanded: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this._onChange = this._onChange.bind(this);
-        this._onChangeBotellas = this._onChangeBotellas.bind(this);
     }
 
     handleChange = panel => (event, expanded) => {
         var newState = { ...this.state };
         newState.expanded = expanded ? panel : false;
         this.setState(newState);
-    };
-
-    _onChange() {
-        var aux = TequilioStore.getTequilera();
-        var newState = { ...this.state };
-        newState.tequilera = aux;
-        this.setState(newState);
     }
 
-    _onChangeBotellas() {
-        var aux = TequilioStore.getTequilas();
-        const newState = { ...this.state };
-        newState.tequilas = aux;
+    _onChange() {
+        var aux = TequilioStore.getHistorial();
+        var newState = { ...this.setState };
+        newState.historial = aux;
         this.setState(newState);
     }
 
     componentWillMount() {
-        TequilioStore.addChangeListenerTequilera(this._onChange);
-        TequilioStore.addChangeListenerBotellas(this._onChangeBotellas);
+        TequilioStore.addChangeListenerHistorial(this._onChange);
     }
 
     componentWillUnmount() {
-        TequilioStore.removeChangeListenerTequilera(this._onChange);
-        TequilioStore.removeChangeListenerBotellas(this._onChangeBotellas);
+        TequilioStore.removeChangeListenerHistorial(this._onChange);
     }
 
     render() {
         const { classes } = this.props;
-        const { tequilera, expanded, tequilas } = this.state;
+        const { historial } = this.state;
 
-        return (
+        return(
             <main>
                 <div className={classes.toolbar}>
                     <Typography variant="h6" color="inherit" className={classes.title}>
-                        {tequilera}
+                        Historial
                     </Typography>
-                    {tequilas.map(tequila => (
-                        <ExpansionPanel key={tequila.marca} expanded={expanded === tequila.marca} onChange={this.handleChange(tequila.marca)}>
-                            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                                <Typography className={classes.heading}>{tequila.marca}</Typography>
-                                <Typography className={classes.secondaryHeading}>{tequila.description.color}</Typography>
+                    {historial.map(botella => (
+                        <ExpansionPanel expandIcon={<ExpandMoreIcon/>}>
+                            <ExpansionPanelSummary>
+                                <Typography className={classes.heading}>{botella.sku}</Typography>
+                                <Typography className={classes.secondaryHeading}>Comprada en: {botella.doc}</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
-                                <Typography>Color: {tequila.description.color}</Typography>
-                                <Typography>Aroma: {tequila.description.aroma}</Typography>
-                                <Typography>Taste: {tequila.description.taste}</Typography>
-                                <Typography>Descripcion: {tequila.description.text}</Typography>
+                                <Typography component="p">
+                                    La botella fue comprada en {botella.doc} y fue fabricada en {botella.fc}
+                                </Typography>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
                     ))}
@@ -103,8 +91,8 @@ class Botellas extends React.Component {
     }
 }
 
-Botellas.propTypes = {
+HistorialDisplay.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Botellas));
+export default withRoot(withStyles(styles)(HistorialDisplay));

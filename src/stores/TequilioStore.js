@@ -84,7 +84,8 @@ class TequilioStore extends EventEmitter {
     }
 
     apiHsReturn(data) {
-        historial = data;
+        historial = data.historial;
+        this.emit(Constants.HISTORIAL_CHANGE);
     }
 
     getHistorial() {
@@ -121,6 +122,14 @@ class TequilioStore extends EventEmitter {
 
     removeChangeListenerSku(callback) {
         this.removeListener(Constants.ONE_BOTELLA_CHANGE, callback);
+    }
+
+    addChangeListenerHistorial(callback) {
+        this.on(Constants.HISTORIAL_CHANGE, callback);
+    }
+
+    removeChangeListenerHistorial(callback) {
+        this.removeListener(Constants.HISTORIAL_CHANGE, callback);
     }
 }
 

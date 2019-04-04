@@ -54,6 +54,21 @@ class TequilioActions {
             payload: payload
         });
     }
+
+    getHistorial(user, pwd) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.API_CALL
+        });
+
+        API.getHistorial(user, pwd);
+    }
+
+    receiveHistorial(payload) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.API_HS_RETURN,
+            payload: payload
+        });
+    }
 }
 
 export default new TequilioActions();

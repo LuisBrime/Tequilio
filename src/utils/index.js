@@ -55,6 +55,33 @@ class API {
             TequilioActions.receiveSkuBotella(payload);
         })*/
     }
+
+    getHistorial(user, pwd) {
+        var payload = {};
+        payload.historial = [
+            {
+                sku: 'prueba1',
+                fc: '1/1/1991',
+                doc: '2/1/1991',
+            },
+            {
+                sku: 'prueba2',
+                fc: '1/1/1991',
+                doc: '2/1/1991',
+            }
+        ];
+        TequilioActions.receiveHistorial(payload);
+        /*
+        request.get('http://localhost:5000/api/')
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+            if (err) return console.error(err);
+
+            var payload = {};
+
+            TequilioActions.receiveHistorial(payload);
+        })*/
+    }
 }
 
 export default new API();
