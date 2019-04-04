@@ -73,7 +73,7 @@ class HistorialDisplay extends React.Component {
                         Historial
                     </Typography>
                     {historial.map(botella => (
-                        <ExpansionPanel expandIcon={<ExpandMoreIcon/>}>
+                        <ExpansionPanel expandIcon={<ExpandMoreIcon/>} key={botella.sku}>
                             <ExpansionPanelSummary>
                                 <Typography className={classes.heading}>{botella.sku}</Typography>
                                 <Typography className={classes.secondaryHeading}>Comprada en: {botella.doc}</Typography>

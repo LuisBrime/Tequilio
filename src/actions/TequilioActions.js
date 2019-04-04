@@ -48,6 +48,14 @@ class TequilioActions {
         API.getBotella(sku, user, pwd);
     }
 
+    getSkuBotellaInsecure(sku) {
+        Dispatcher.dispatch({
+            actionType: ActionTypes.API_CALL
+        });
+
+        API.getBotellaInsecure(sku);
+    }
+
     receiveSkuBotella(payload) {
         Dispatcher.dispatch({
             actionType: ActionTypes.API_SKU_RETURN,

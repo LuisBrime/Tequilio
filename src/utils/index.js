@@ -31,56 +31,43 @@ class API {
     }
 
     getBotella(sku, user, pwd) {
-        var payload = {};
-        payload.botella = {
-            marca: 'Prueba1',
-            description: {
-                color: 'azul',
-                aroma: 'rico',
-                taste: 'fresa',
-                text: 'es una cerveza bien buena',
-            },
-            image: '/utils/TG750_08.png',
-            sku: 'skuprueba1',
-        };
-        TequilioActions.receiveSkuBotella(payload);
-        /*
-        request.get('http://localhost:5000/api/')
+        request.get('http://localhost:5000/api/tequileros/tequila/' + sku + '/' + user + '/' + pwd)
         .set('Accept', 'application/json')
         .end((err, response) => {
             if (err) return console.error(err);
 
             var payload = {};
+            payload.botella = response.body.tequila;
 
             TequilioActions.receiveSkuBotella(payload);
-        })*/
+        });
+    }
+
+    getBotellaInsecure(sku) {
+        request.get('http://localhost:5000/api/tequileros/tequila/' + sku)
+        .set('Accept', 'application/json')
+        .end((err, response) => {
+            if (err) return console.error(err);
+
+            console.log('botella insecure');
+            var payload = {};
+            payload.botella = response.body.tequila;
+
+            TequilioActions.receiveSkuBotella(payload);
+        });
     }
 
     getHistorial(user, pwd) {
-        var payload = {};
-        payload.historial = [
-            {
-                sku: 'prueba1',
-                fc: '1/1/1991',
-                doc: '2/1/1991',
-            },
-            {
-                sku: 'prueba2',
-                fc: '1/1/1991',
-                doc: '2/1/1991',
-            }
-        ];
-        TequilioActions.receiveHistorial(payload);
-        /*
-        request.get('http://localhost:5000/api/')
+        request.get('http://localhost:5000/api/users/historial/' + user + '/' + pwd)
         .set('Accept', 'application/json')
         .end((err, response) => {
             if (err) return console.error(err);
 
             var payload = {};
+            payload.historial = response.body.historial;
 
             TequilioActions.receiveHistorial(payload);
-        })*/
+        })
     }
 }
 

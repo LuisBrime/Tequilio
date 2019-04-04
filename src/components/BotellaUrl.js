@@ -73,7 +73,7 @@ class BotellaUrl extends React.Component {
         var aux = "";
         if (this.props.match.params.sku) {
             aux = this.props.match.params.sku;
-            TequilioActions.getSkuBotella(aux);
+            TequilioActions.getSkuBotellaInsecure(aux);
         }
     }
 
@@ -95,6 +95,7 @@ class BotellaUrl extends React.Component {
                                 image={botella.image}
                                 title="Botella de tequila"
                             />
+                            { botella.marca ?
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {botella.marca}
@@ -106,6 +107,13 @@ class BotellaUrl extends React.Component {
                                     SKU: {botella.sku}
                                 </Typography>
                             </CardContent>
+                            :
+                            <CardContent>
+                                <Typography variant="h6">
+                                    EL TEQUILA NO EXISTE O NO FUE BIEN REGISTRADO
+                                </Typography>
+                            </CardContent>
+                            }
                         </CardActionArea>
                     </Card>
                 </div>

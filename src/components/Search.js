@@ -101,6 +101,7 @@ class Search extends React.Component {
                             onChange={this.handleChange}
                             className={classes.textField}
                             name="sku"
+                            inputProps={{ maxLength: 10 }}
                         />
                         <Typography variant="h6" color="inherit" className={classes.title}>
                             Por favor inicia sesión para buscar
