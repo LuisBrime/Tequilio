@@ -8,7 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 
+import TequilioActions from '../actions/TequilioActions';
 import TequilioStore from '../stores/TequilioStore';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
     title: {
@@ -16,6 +19,14 @@ const styles = theme => ({
         padding: theme.spacing.unit * 2,
     },
     toolbar: theme.mixins.toolbar,
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 8,
+        alignItems: 'center',
+        alignText: 'center',
+        marginLeft: `${drawerWidth}px`,
+    },
     card: {
         padding: theme.spacing.unit * 2,
         marginTop: theme.spacing.unit * 7,
@@ -29,7 +40,7 @@ const styles = theme => ({
     },
 });
 
-class Botella extends React.Component {
+class BotellaUrl extends React.Component {
     constructor(props) {
         super(props);
 
@@ -45,20 +56,25 @@ class Botella extends React.Component {
                 image: '',
                 sku: '',
             },
-        };
+        }
 
-        this._onChange = this._onChange.bind(this);
+        this._onChange = this._onChange.bind(this)
     }
 
     _onChange() {
         var aux = TequilioStore.getBotella();
-        const newState = { ...this.state };
+        var newState = { ...this.state };
         newState.botella = aux;
         this.setState(newState);
     }
 
     componentWillMount() {
         TequilioStore.addChangeListenerSku(this._onChange);
+        var aux = "";
+        if (this.props.match.params.sku) {
+            aux = this.props.match.params.sku;
+            TequilioActions.getSkuBotella(aux);
+        }
     }
 
     componentWillUnmount() {
@@ -69,8 +85,8 @@ class Botella extends React.Component {
         const { classes } = this.props;
         const { botella } = this.state;
 
-        return (
-            <main>
+        return(
+            <main className={classes.content}>
                 <div className={classes.toolbar}>
                     <Card className={classes.card}>
                         <CardActionArea>
@@ -98,8 +114,8 @@ class Botella extends React.Component {
     }
 }
 
-Botella.propTypes = {
+BotellaUrl.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withRoot(withStyles(styles)(Botella));
+export default withRoot(withStyles(styles)(BotellaUrl));
